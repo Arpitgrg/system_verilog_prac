@@ -1,0 +1,51 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 02.12.2023 23:25:33
+// Design Name: 
+// Module Name: packed_array
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module packed_array();
+int j = 1,
+ b[$] = {3,4},
+ q[$] = {0,2,5}; // {0,2,5} Initial queue
+initial begin
+ q.insert(1, j); // {0,1,2,5} Insert 1 before 2
+  foreach (q[i])
+ $display(q[i]);
+ //q.insert(b[$]); // {0,1,2,3,4,5} Insert whole q.
+ q.delete(1); // {0,2,3,4,5} Delete elem. #1
+  foreach (q[i])
+ $display(q[i]);
+ // The rest of these are fast
+ q.push_front(6); // {6,0,2,3,4,5} Insert at front
+  foreach (q[i])
+ $display(q[i]);
+ j = q.pop_back; // {6,0,2,3,4} j = 5
+  foreach (q[i])
+ $display(q[i]);
+ q.push_back(8); // {6,0,2,3,4,8} Insert at back
+  foreach (q[i])
+ $display(q[i]);
+ j = q.pop_front; // {0,2,3,4,8} j = 6
+ foreach (q[i])
+ $display(q[i]);
+end
+
+
+endmodule
