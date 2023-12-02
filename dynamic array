@@ -1,0 +1,78 @@
+`timescale 1ns / 1ps
+
+module packed_array();
+int dyn[], d2[]; // Empty dynamic arrays
+
+initial begin
+ dyn = new[5]; // Allocate 5 elements
+ foreach (dyn[j])
+ dyn[j] = j; // Initialize the elements
+ d2 = dyn; // Copy a dynamic array
+ d2[0] = 5; // Modify the copy
+ $display(dyn[0],d2[0]); // See both values (0 & 5)
+ dyn = new[20](dyn); // Expand and copy
+ foreach(dyn[j])
+$display("expand and copy",j,dyn[j]);
+ dyn = new[30]; // Allocate 100 new integers
+  foreach(dyn[j])
+$display("only expand ",j,dyn[j]);
+ // Old values are lost
+ dyn.delete; // Delete all elements
+end
+
+endmodule
+
+
+// output is
+  Time resolution is 1 ps
+          0          5
+expand and copy          0          0
+expand and copy          1          1
+expand and copy          2          2
+expand and copy          3          3
+expand and copy          4          4
+expand and copy          5          0
+expand and copy          6          0
+expand and copy          7          0
+expand and copy          8          0
+expand and copy          9          0
+expand and copy         10          0
+expand and copy         11          0
+expand and copy         12          0
+expand and copy         13          0
+expand and copy         14          0
+expand and copy         15          0
+expand and copy         16          0
+expand and copy         17          0
+expand and copy         18          0
+expand and copy         19          0
+only expand           0          0
+only expand           1          0
+only expand           2          0
+only expand           3          0
+only expand           4          0
+only expand           5          0
+only expand           6          0
+only expand           7          0
+only expand           8          0
+only expand           9          0
+only expand          10          0
+only expand          11          0
+only expand          12          0
+only expand          13          0
+only expand          14          0
+only expand          15          0
+only expand          16          0
+only expand          17          0
+only expand          18          0
+only expand          19          0
+only expand          20          0
+only expand          21          0
+only expand          22          0
+only expand          23          0
+only expand          24          0
+only expand          25          0
+only expand          26          0
+only expand          27          0
+only expand          28          0
+only expand          29          0
