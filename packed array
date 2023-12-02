@@ -1,0 +1,13 @@
+module packed_array();
+initial
+begin
+
+// unpacked array declaration and usage
+bit [3:0][7:0] bytes;
+bytes = 32'hdeadbeef;
+$displayh(bytes,,
+         bytes[3],,
+        bytes[3][7]);
+// answer is  deadbeef de 1
+end
+endmodule
